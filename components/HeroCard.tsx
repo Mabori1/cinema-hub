@@ -1,9 +1,9 @@
 import { baseImgUrl } from "@lib/constants";
 import { Movie } from "@lib/types";
+import { InfoOutlined, PlayCircleOutline } from "@mui/icons-material";
 import Image from "next/image";
 
 const HeroCard = ({ movie }: { movie: Movie }) => {
-  console.log(`${baseImgUrl}${movie?.backdrop_path || movie?.poster_path}`);
   return (
     <div className="hero">
       <div className="hero-bg">
@@ -17,8 +17,18 @@ const HeroCard = ({ movie }: { movie: Movie }) => {
               33vw"
           style={{ objectFit: "cover" }}
         />
+        <div className="overlay"></div>
       </div>
       <h1 className="hero-title">{movie?.title}</h1>
+      <p className="hero-oferview">{movie?.overview}</p>
+      <div className="hero-btns">
+        <button className="hero-btn">
+          <PlayCircleOutline /> Play Now
+        </button>
+        <button className="hero-btn">
+          <InfoOutlined /> More Info
+        </button>
+      </div>
     </div>
   );
 };
