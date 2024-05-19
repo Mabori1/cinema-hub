@@ -21,3 +21,13 @@ export interface Genre {
   name: string;
   movies: Movie[];
 }
+
+export interface Video {
+  type:
+    | "Trailer"
+    | "Teaser"
+    | "Clip"
+    | "Featurette"
+    | "Behind the Scenes"
+    | "Bloopers";
+}

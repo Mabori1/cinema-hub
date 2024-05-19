@@ -3,9 +3,12 @@
 import { Search } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const router = useRouter();
+
   const [search, setSearch] = useState<string>("");
   const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -24,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={` ${isScrolled ? "bg-black-1" : "navbar"}`}>
+    <div className={`navbar ${isScrolled && "bg-black-1"}`}>
       <Link href="/">
         <Image
           src="/assets/logo.png"
@@ -50,7 +53,12 @@ const Navbar = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Search className="icon" />
+          <button disabled={!search}>
+            <Search
+              className="icon"
+              onClick={() => router.push(`/search/${search}`)}
+            />
+          </button>
         </div>
         <Image
           src="/assets/profile_icon.jpg"
